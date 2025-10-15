@@ -13,16 +13,16 @@ type Party = {
 
 // --- Seed data (you can edit these in the UI)
 const seedParties: Party[] = [
-  { id: "ap", name: "AP", firstRoundVotes: 250000 },
-  { id: "lyp", name: "LYP ADN", firstRoundVotes: 180000 },
-  { id: "apb", name: "APB SÚMATE", firstRoundVotes: 210000 },
-  { id: "lib", name: "LIBRE", firstRoundVotes: 520000, isFinalist: true },
-  { id: "fp", name: "FP", firstRoundVotes: 160000 },
-  { id: "mas", name: "MAS-IPSP", firstRoundVotes: 310000 },
-  { id: "uni", name: "UNIDAD", firstRoundVotes: 120000 },
-  { id: "pdc", name: "PDC", firstRoundVotes: 540000, isFinalist: true },
-  { id: "nul", name: "Nulo", firstRoundVotes: 40000 },
-  { id: "bla", name: "Blanco (fijo)", firstRoundVotes: 30000, lockedToBlank: true },
+  { id: "ap", name: "AP", firstRoundVotes: 456002 },
+  { id: "lyp", name: "LYP ADN", firstRoundVotes: 77576 },
+  { id: "apb", name: "APB SÚMATE", firstRoundVotes: 361640 },
+  { id: "lib", name: "LIBRE", firstRoundVotes: 1430176, isFinalist: true },
+  { id: "fp", name: "FP", firstRoundVotes: 89253 },
+  { id: "mas", name: "MAS-IPSP", firstRoundVotes: 169887 },
+  { id: "uni", name: "UNIDAD", firstRoundVotes: 1054568 },
+  { id: "pdc", name: "PDC", firstRoundVotes: 1717432, isFinalist: true },
+  { id: "nul", name: "Nulo", firstRoundVotes: 1371049 },
+  { id: "bla", name: "Blanco (fijo)", firstRoundVotes: 172835, lockedToBlank: true },
 ];
 
 const pct = (num: number, den: number) => (den > 0 ? (100 * num) / den : 0);
