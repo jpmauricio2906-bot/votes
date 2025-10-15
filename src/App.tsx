@@ -31,7 +31,6 @@ export default function App() {
   const finalists = parties.filter((p) => p.isFinalist);
   const [leftFinal, rightFinal] = finalists;
 
-  // Only keep transfers to the two finalists
   type Transfers = Record<string, { toLeft: number; toRight: number }>;
   const initialTransfers: Transfers = Object.fromEntries(
     parties.map((p) => [p.id, { toLeft: 50, toRight: 50 }])
@@ -47,6 +46,29 @@ export default function App() {
       const otherField = field === "toLeft" ? "toRight" : "toLeft";
       const next = { ...cur, [field]: clamped, [otherField]: 100 - clamped };
       return { ...prev, [partyId]: next };
+    });
+  }
+
+  // Ensure only two finalists can be selected
+  function toggleFinalist(partyId: string) {
+    setParties((prev) => {
+      const currentFinalists = prev.filter((p) => p.isFinalist);
+      const target = prev.find((p) => p.id === partyId);
+      if (!target) return prev;
+
+      // If already a finalist, deselect it
+      if (target.isFinalist) {
+        return prev.map((p) => (p.id === partyId ? { ...p, isFinalist: false } : p));
+      }
+
+      // If fewer than two finalists, allow adding this one
+      if (currentFinalists.length < 2) {
+        return prev.map((p) => (p.id === partyId ? { ...p, isFinalist: true } : p));
+      }
+
+      // Otherwise, prevent selecting more than two
+      alert("Solo se pueden elegir dos finalistas.");
+      return prev;
     });
   }
 
@@ -133,7 +155,7 @@ export default function App() {
                       <input
                         type="checkbox"
                         checked={Boolean(p.isFinalist)}
-                        onChange={(e) => setParties((prev) => prev.map((x) => (x.id === p.id ? { ...x, isFinalist: e.target.checked } : x)))}
+                        onChange={() => toggleFinalist(p.id)}
                         disabled={p.lockedToBlank}
                       />
                     </Td>
